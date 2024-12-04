@@ -6,14 +6,14 @@ The React JSON Schema Form Builder is a ReactJS Component Library that allows th
 
 This `FormBuilder` component is wrapped around a demo app that demonstrates how the tool can be used in conjunction with a code editor and [Mozilla's React JSON schema form viewer](https://github.com/rjsf-team/react-jsonschema-form) to build a form and maintain a live, code representation of it in real time.
 
-The Form Builder is available as an NPM package [here](https://www.npmjs.com/package/@ginkgo-bioworks/react-json-schema-form-builder).
+The Form Builder is available as an NPM package [here](https://www.npmjs.com/package/@brainfish-ai/react-json-schema-form-builder).
 
 View the Form Builder in action [here](https://ginkgobioworks.github.io/react-json-schema-form-builder/)
 
 ## Quickstart
 
 ```bash
-npm i --save @ginkgo-bioworks/react-json-schema-form-builder
+npm i --save @brainfish-ai/react-json-schema-form-builder
 ```
 
 Import the tool as a react component in your Node project:
@@ -22,9 +22,9 @@ Import the tool as a react component in your Node project:
 
 ```javascript
 import React, { Component } from 'react';
- 
-import {FormBuilder} from '@ginkgo-bioworks/react-json-schema-form-builder';
- 
+
+import {FormBuilder} from '@brainfish-ai/react-json-schema-form-builder';
+
 class Example extends Component {
   constructor(props) {
     super(props);
@@ -55,4 +55,3 @@ For more usage examples, see the [Usage documentation page](Usage.md)
 ## Credits
 
 The Form Builder was built and is maintained by [Ginkgo Bioworks](https://www.ginkgobioworks.com/), and is open sourced through the Apache 2.0 license.
-
