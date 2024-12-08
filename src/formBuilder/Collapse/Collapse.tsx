@@ -2,7 +2,7 @@ import React, { FC, ReactNode, MouseEvent } from 'react';
 import { createUseStyles } from 'react-jss';
 import { Collapse as RSCollapse } from 'reactstrap';
 import classnames from 'classnames';
-import { faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import FontAwesomeIcon from '../FontAwesomeIcon';
 
 const useStyles = createUseStyles({
@@ -13,6 +13,8 @@ const useStyles = createUseStyles({
       fontSize: '2.3rem',
       cursor: 'pointer',
       marginLeft: '33px',
+      marginTop: 'auto',
+      marginBottom: 'auto',
       '& .fa-caret-right': {
         marginRight: '9px',
       },
@@ -52,10 +54,11 @@ const Collapse: FC<CollapseProps> = (props) => {
                 props.toggleCollapse(event);
               }
             }}
-            icon={props.isOpen ? faCaretDown : faCaretRight}
+            style={{ width: '24px', height: '24px' }}
+            icon={props.isOpen ? faAngleRight : faAngleDown}
           />
         </span>
-        <h4>{props.title}</h4>
+        <h4 className='m-0 p-0'>{props.title}</h4>
       </div>
       <RSCollapse isOpen={props.isOpen}>
         <div>{props.children}</div>
