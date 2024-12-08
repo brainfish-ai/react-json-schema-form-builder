@@ -1,10 +1,10 @@
 {
-  "name": "@ginkgo-bioworks/react-json-schema-form-builder-example",
+  "name": "@brainfish-ai/react-json-schema-form-builder-example",
   "homepage": ".",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "next start",
+    "start": "next start -p 3009",
     "build": "next build",
     "export": "next export",
     "dev": "next dev",
@@ -15,7 +15,7 @@
     "clean": "rimraf node_modules build out"
   },
   "dependencies": {
-    "@ginkgo-bioworks/react-json-schema-form-builder": "file:..",
+    "@brainfish-ai/react-json-schema-form-builder": "file:..",
     "@rjsf/bootstrap-4": "^3.2.1",
     "@rjsf/core": "^3.0.0",
     "react-bootstrap": "^1.6.4",
