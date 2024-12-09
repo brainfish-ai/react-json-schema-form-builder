@@ -40,9 +40,10 @@ const useStyles = createUseStyles({
       color: 'green',
     },
     '& .fa-plus-square, & .fa-square-plus': {
-      color: 'green',
-      'font-size': '1.5em',
+      color: '#171717',
       margin: '0 auto',
+      width: '2rem',
+      height: '2rem',
     },
     ...arrowsStyle,
     '& .card-container': {
@@ -67,10 +68,17 @@ const useStyles = createUseStyles({
         'font-weight': 'bold',
       },
       '& .d-flex': {
-        'border-bottom': '1px solid gray',
+        //'border-bottom': '1px solid gray',
+      },
+      '& .divider': {
+        border: '1px dashed #171717',
+        color: '#171717',
+        opacity: '0.5',
+        margin: '1em -1em',
       },
       '& .label': {
         flex: 1,
+        marginLeft: '0.5em',
       },
     },
     '& .card-container:hover': { border: '1px solid green' },

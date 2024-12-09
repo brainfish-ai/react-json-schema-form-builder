@@ -7,14 +7,14 @@ import FontAwesomeIcon from '../FontAwesomeIcon';
 
 const useStyles = createUseStyles({
   collapseElement: {
+    padding: '1rem',
     '& .disabled': { '.toggle-collapse': { cursor: 'default' } },
     '& h4': { marginTop: '7px', padding: '13px 10px 10px 10px' },
     '& .toggle-collapse': {
       fontSize: '2.3rem',
       cursor: 'pointer',
-      marginLeft: '33px',
-      marginTop: 'auto',
-      marginBottom: 'auto',
+      display: 'flex',
+      alignItems: 'center',
       '& .fa-caret-right': {
         marginRight: '9px',
       },
@@ -60,6 +60,7 @@ const Collapse: FC<CollapseProps> = (props) => {
         </span>
         <h4 className='m-0 p-0'>{props.title}</h4>
       </div>
+      {props.isOpen && <div className='divider' />}
       <RSCollapse isOpen={props.isOpen}>
         <div>{props.children}</div>
       </RSCollapse>

@@ -31,7 +31,6 @@ const useStyles = createUseStyles({
     },
     '& .card-entry': {
       margin: 0,
-      width: '50%',
       'text-align': 'left',
       padding: '0.5em',
       '&.wide-card-entry': {
@@ -183,6 +182,7 @@ export default function Card({
             allFormInputs={allFormInputs}
             mods={mods}
             showObjectNameInput={showObjectNameInput}
+            showDefault={false}
           />
         </div>
         <div className={classes.cardInteractions}>

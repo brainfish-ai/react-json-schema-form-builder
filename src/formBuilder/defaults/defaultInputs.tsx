@@ -20,7 +20,12 @@ const useStyles = createUseStyles({
 // specify the inputs required for a string type object
 export const CardDefaultParameterInputs: CardComponentType = () => <div />;
 
-const getInputCardBodyComponent = ({ type }: { type: InputType }) =>
+const getInputCardBodyComponent = ({
+  type,
+}: {
+  type: InputType;
+  showDefault?: boolean;
+}) =>
   function InputCardBodyComponent({
     parameters,
     onChange,
