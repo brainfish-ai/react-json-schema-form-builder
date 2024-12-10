@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react';
 import Select from 'react-select';
 import { Input, FormFeedback } from 'reactstrap';
 import classnames from 'classnames';
-import GeneralParameterInputs from './GeneralParameterInputs';
 import {
   defaultUiProps,
   defaultDataProps,
@@ -17,8 +16,7 @@ import type {
   FormInput,
   CardComponentPropsType,
 } from './types';
-import Tooltip from './Tooltip';
-// import FBCheckbox from './checkbox/FBCheckbox';
+import FBCheckbox from './checkbox/FBCheckbox';
 
 // specify the inputs required for any type of object
 export default function CardGeneralParameterInputs({
@@ -26,7 +24,7 @@ export default function CardGeneralParameterInputs({
   onChange,
   allFormInputs,
   mods,
-  showObjectNameInput = true,
+  showObjectNameInput = false,
 }: {
   parameters: CardComponentPropsType;
   onChange: (newParams: CardComponentPropsType) => void;
@@ -37,6 +35,7 @@ export default function CardGeneralParameterInputs({
   const [keyState, setKeyState] = React.useState(parameters.name);
   const [keyError, setKeyError] = React.useState<null | string>(null);
   const [titleState, setTitleState] = React.useState(parameters.title);
+  const [requiredState, setRequiredState] = React.useState(parameters.required);
   const [descriptionState, setDescriptionState] = React.useState(
     parameters.description,
   );
@@ -83,20 +82,7 @@ export default function CardGeneralParameterInputs({
           parameters.$ref === undefined ? '' : 'disabled-input'
         }`}
       >
-        <h5>
-          {`${displayNameLabel} `}
-          <Tooltip
-            text={
-              mods &&
-              mods.tooltipDescriptions &&
-              typeof mods.tooltipDescriptions.cardDisplayName === 'string'
-                ? mods.tooltipDescriptions.cardDisplayName
-                : 'The user-facing name of this object'
-            }
-            id={`${elementId}-titleinfo`}
-            type='help'
-          />
-        </h5>
+        <h5>{`${displayNameLabel} `}</h5>
         <div>
           <Input
             value={titleState || ''}
@@ -110,32 +96,19 @@ export default function CardGeneralParameterInputs({
           />
         </div>
       </div>
-      {/* <FBCheckbox
-        onChangeValue={() =>
-          onChange(() => {
+      <div className='card-entry'>
+        <FBCheckbox
+          onChangeValue={() => {
             setRequiredState(!requiredState);
-          })
-        }
-        isChecked={!!requiredState}
-        label='Required'
-        id={`${elementId}_required`}
-      /> */}
+          }}
+          isChecked={!!requiredState}
+          label='Required'
+          id={`${elementId}_required`}
+        />
+      </div>
       {showObjectNameInput && (
         <div className='card-entry'>
-          <h5>
-            {`${objectNameLabel} `}
-            <Tooltip
-              text={
-                mods &&
-                mods.tooltipDescriptions &&
-                typeof mods.tooltipDescriptions.cardObjectName === 'string'
-                  ? mods.tooltipDescriptions.cardObjectName
-                  : 'The back-end name of the object'
-              }
-              id={`${elementId}_nameinfo`}
-              type='help'
-            />
-          </h5>
+          <h5>{`${objectNameLabel} `}</h5>
 
           <div>
             <Input
@@ -172,20 +145,7 @@ export default function CardGeneralParameterInputs({
       )}
 
       <div className={`card-entry ${parameters.$ref ? 'disabled-input' : ''}`}>
-        <h5>
-          {`${descriptionLabel} `}
-          <Tooltip
-            text={
-              mods &&
-              mods.tooltipDescriptions &&
-              typeof mods.tooltipDescriptions.cardDescription === 'string'
-                ? mods.tooltipDescriptions.cardDescription
-                : 'This will appear as help text on the form'
-            }
-            id={`${elementId}-descriptioninfo`}
-            type='help'
-          />
-        </h5>
+        <h5>{`${descriptionLabel} `}</h5>
         <div>
           <Input
             value={descriptionState || ''}
@@ -204,20 +164,7 @@ export default function CardGeneralParameterInputs({
           'wide-card-entry': !showObjectNameInput,
         })}
       >
-        <h5>
-          {`${inputTypeLabel} `}
-          <Tooltip
-            text={
-              mods &&
-              mods.tooltipDescriptions &&
-              typeof mods.tooltipDescriptions.cardInputType === 'string'
-                ? mods.tooltipDescriptions.cardInputType
-                : 'The type of form input displayed on the form'
-            }
-            id={`${elementId}-inputinfo`}
-            type='help'
-          />
-        </h5>
+        <h5>{`${inputTypeLabel} `}</h5>
         <Select
           value={{
             value: parameters.category,
@@ -253,16 +200,6 @@ export default function CardGeneralParameterInputs({
           className='card-select'
         />
       </div>
-
-      {/* <div className='card-category-options'>
-        <GeneralParameterInputs
-          category={parameters.category!}
-          parameters={parameters}
-          onChange={onChange}
-          mods={mods}
-          allFormInputs={allFormInputs}
-        />
-      </div> */}
     </React.Fragment>
   );
 }

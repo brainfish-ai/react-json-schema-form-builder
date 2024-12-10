@@ -1,25 +1,17 @@
 import React, { ReactElement } from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
 import { createUseStyles } from 'react-jss';
-import {
-  faArrowUp,
-  faArrowDown,
-  faPencilAlt,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
-import FBCheckbox from './checkbox/FBCheckbox';
+import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import Collapse from './Collapse/Collapse';
-import CardModal from './CardModal';
 import CardGeneralParameterInputs from './CardGeneralParameterInputs';
 import Add from './Add';
 import FontAwesomeIcon from './FontAwesomeIcon';
 import Tooltip from './Tooltip';
 import { getRandomId } from './utils';
-import type { CardPropsType, CardComponentPropsType } from './types';
+import type { CardPropsType } from './types';
 
 const useStyles = createUseStyles({
   cardEntries: {
-    'border-bottom': '1px solid gray',
     margin: '.5em 1.5em 0 1.5em',
     '& h5': {
       color: 'black',
@@ -181,32 +173,23 @@ export default function Card({
             onChange={onChange}
             allFormInputs={allFormInputs}
             mods={mods}
-            showObjectNameInput={showObjectNameInput}
+            showObjectNameInput={false}
           />
         </div>
         <div className={classes.cardInteractions}>
-          <span id={`${elementId}_editinfo`}>
-            <FontAwesomeIcon
-              icon={faPencilAlt}
-              onClick={() => setModalOpen(true)}
-            />
-          </span>
-          <UncontrolledTooltip placement='top' target={`${elementId}_editinfo`}>
-            Additional configurations for this form element
-          </UncontrolledTooltip>
-          <span id={`${elementId}_trashinfo`}>
+          {/* <span id={`${elementId}_trashinfo`}>
             <FontAwesomeIcon
               icon={faTrash}
               onClick={() => onDelete && onDelete()}
             />
-          </span>
-          <UncontrolledTooltip
+          </span> */}
+          {/* <UncontrolledTooltip
             placement='top'
             target={`${elementId}_trashinfo`}
           >
             Delete form element
-          </UncontrolledTooltip>
-          <FBCheckbox
+          </UncontrolledTooltip> */}
+          {/* <FBCheckbox
             onChangeValue={() =>
               onChange({
                 ...componentProps,
@@ -216,17 +199,8 @@ export default function Card({
             isChecked={!!componentProps.required}
             label='Required'
             id={`${elementId}_required`}
-          />
+          /> */}
         </div>
-        <CardModal
-          componentProps={componentProps as CardComponentPropsType}
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          onChange={(newComponentProps: CardComponentPropsType) => {
-            onChange(newComponentProps);
-          }}
-          TypeSpecificParameters={TypeSpecificParameters}
-        />
       </Collapse>
       {mods?.components?.add && mods?.components?.add(addProperties)}
       {!mods?.components?.add && addElem && (
