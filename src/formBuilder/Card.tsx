@@ -182,7 +182,6 @@ export default function Card({
             allFormInputs={allFormInputs}
             mods={mods}
             showObjectNameInput={showObjectNameInput}
-            showDefault={false}
           />
         </div>
         <div className={classes.cardInteractions}>

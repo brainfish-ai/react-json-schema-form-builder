@@ -254,7 +254,7 @@ export default function CardGeneralParameterInputs({
         />
       </div>
 
-      <div className='card-category-options'>
+      {/* <div className='card-category-options'>
         <GeneralParameterInputs
           category={parameters.category!}
           parameters={parameters}
@@ -262,7 +262,7 @@ export default function CardGeneralParameterInputs({
           mods={mods}
           allFormInputs={allFormInputs}
         />
-      </div>
+      </div> */}
     </React.Fragment>
   );
 }
