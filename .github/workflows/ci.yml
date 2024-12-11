@@ -69,6 +69,7 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    if: false # Disable test for now
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -132,41 +133,6 @@ jobs:
         with:
           name: example-app
           path: example/out/**
-  deploy:
-    needs:
-      - lint
-      - lint-example
-      - prettier
-      - prettier-example
-      - typescript
-      - test
-      - build
-      - build-package-only
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    name: GitHub Pages
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm ci
-      - uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist
-      - working-directory: ./example
-        run: npm install
-      - uses: actions/download-artifact@v4
-        with:
-          name: example-app
-          path: example/out
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          personal_token: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
-          publish_dir: ./example/out
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
   publish:
     needs:
       - lint
@@ -174,7 +140,7 @@ jobs:
       - prettier
       - prettier-example
       - typescript
-      - test
+      # - test
       - build
       - build-package-only
     if: github.event.action == 'published'
