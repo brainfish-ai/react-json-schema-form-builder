@@ -80,55 +80,26 @@ jobs:
       - uses: coverallsapp/github-action@v2.3.4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-  build-package-only:
-    name: Build (Package Only) - ${{ matrix.os }}/Node ${{ matrix.node_version }}
-    strategy:
-      fail-fast: false
-      matrix:
-        node_version:
-          - 16
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node_version }}
-      - run: npm ci
-      - run: npm run-s build
   build:
-    name: Build - ${{ matrix.os }}/Node ${{ matrix.node_version }}
-    strategy:
-      fail-fast: false
-      matrix:
-        node_version:
-          - 18
-          - 20
-        os:
-          - macos-latest
-          - ubuntu-latest
-          - windows-latest
-    runs-on: ${{ matrix.os }}
+    name: Build
+    runs-on: 'ubuntu-latest'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node_version }}
+          node-version: 20
       - run: npm ci
       - run: npm run-s build
       - working-directory: ./example
         run: npm install
       - working-directory: ./example
         run: npm run build
-      - if: matrix.os == 'ubuntu-latest' && matrix.node_version == 20 && ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event.action == 'published')
+      - if: ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event.action == 'published')
         uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/**
-      - if: matrix.os == 'ubuntu-latest' && matrix.node_version == 20 && github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
           name: example-app
@@ -142,7 +113,6 @@ jobs:
       - typescript
       # - test
       - build
-      - build-package-only
     if: github.event.action == 'published'
     name: Publish
     runs-on: ubuntu-latest
@@ -157,6 +127,7 @@ jobs:
         with:
           name: dist
           path: dist
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN }}
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.ORG_NPM_TOKEN }}
+          access: 'public'
