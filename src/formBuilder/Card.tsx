@@ -12,7 +12,6 @@ import type { CardPropsType } from './types';
 
 const useStyles = createUseStyles({
   cardEntries: {
-    margin: '.5em 1.5em 0 1.5em',
     '& h5': {
       color: 'black',
       'font-size': '14px',
@@ -24,7 +23,7 @@ const useStyles = createUseStyles({
     '& .card-entry': {
       margin: 0,
       'text-align': 'left',
-      padding: '0.5em',
+      padding: '0.5em 0',
       '&.wide-card-entry': {
         width: '100%',
       },

@@ -1,6 +1,6 @@
 {
   "name": "@brainfish-ai/react-json-schema-form-builder",
-  "version": "3.0.1",
+  "version": "0.0.1",
   "description": "React Component for visually configuring a JSON Schema-based form",
   "author": {
     "name": "Nathan Alam",
