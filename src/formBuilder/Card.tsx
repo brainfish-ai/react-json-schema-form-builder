@@ -90,20 +90,16 @@ const useStyles = createUseStyles({
 export default function Card({
   componentProps,
   onChange,
-  onDelete,
   onMoveUp,
   onMoveDown,
-  TypeSpecificParameters,
   addElem,
   cardOpen,
   setCardOpen,
   allFormInputs,
   mods,
-  showObjectNameInput = true,
   addProperties,
 }: CardPropsType): ReactElement {
   const classes = useStyles();
-  const [modalOpen, setModalOpen] = React.useState(false);
   const [elementId] = React.useState(getRandomId());
 
   return (
@@ -175,31 +171,7 @@ export default function Card({
             showObjectNameInput={false}
           />
         </div>
-        <div className={classes.cardInteractions}>
-          {/* <span id={`${elementId}_trashinfo`}>
-            <FontAwesomeIcon
-              icon={faTrash}
-              onClick={() => onDelete && onDelete()}
-            />
-          </span> */}
-          {/* <UncontrolledTooltip
-            placement='top'
-            target={`${elementId}_trashinfo`}
-          >
-            Delete form element
-          </UncontrolledTooltip> */}
-          {/* <FBCheckbox
-            onChangeValue={() =>
-              onChange({
-                ...componentProps,
-                required: !componentProps.required,
-              })
-            }
-            isChecked={!!componentProps.required}
-            label='Required'
-            id={`${elementId}_required`}
-          /> */}
-        </div>
+        <div className={classes.cardInteractions}></div>
       </Collapse>
       {mods?.components?.add && mods?.components?.add(addProperties)}
       {!mods?.components?.add && addElem && (
